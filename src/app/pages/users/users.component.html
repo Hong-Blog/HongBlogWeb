@@ -1,22 +1,56 @@
-<nz-table #basicTable [nzData]="listOfData">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Address</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of basicTable.data">
-    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-    <td>
-      <a>Action 一 {{ data.name }}</a>
-      <nz-divider nzType="vertical"></nz-divider>
-      <a>Delete</a>
-    </td>
-  </tr>
-  </tbody>
-</nz-table>
+<div nz-row [nzGutter]="[0, 24]">
+  <div nz-col [nzSpan]="24">
+    <nz-card>
+      <form nz-form [formGroup]="validateForm">
+        <div nz-row [nzGutter]="24">
+          <div nz-col [nzSpan]="6">
+            <nz-form-item>
+              <nz-form-label [nzFor]="'field'">关键字</nz-form-label>
+              <nz-form-control>
+                <input nz-input [attr.id]="'field'" [formControlName]="'keyword'"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzOffset="12" nzSpan="6" style="text-align: right">
+            <button nz-button nzType="primary" (click)="search()">
+              <i nz-icon nzType="search" nzTheme="outline"></i>搜索
+            </button>
+            <button nz-button (click)="resetForm()">重置</button>
+          </div>
+        </div>
+      </form>
+    </nz-card>
+  </div>
+  <div nz-col [nzSpan]="24">
+    <nz-card nzTitle="用户列表" [nzExtra]="listExtra">
+      <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.name }}</td>
+          <td>{{ data.age }}</td>
+          <td>{{ data.address }}</td>
+          <td>
+            <a>Action 一 {{ data.name }}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+
+<ng-template #listExtra>
+  <button nz-button nzType="primary" (click)="addUser()">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>添加用户
+  </button>
+</ng-template>

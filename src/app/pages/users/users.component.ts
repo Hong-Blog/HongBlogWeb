@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 interface Person {
   key: string;
@@ -34,10 +35,25 @@ export class UsersComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  validateForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({});
+    this.validateForm.addControl('keyword', new FormControl());
   }
 
+  resetForm(): void {
+    this.validateForm.reset();
+  }
+
+  search(): void {
+    alert(JSON.stringify(this.validateForm.value));
+  }
+
+  addUser(): void {
+    alert('添加用户');
+  }
 }
