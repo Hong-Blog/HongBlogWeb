@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../../services/user.service';
 
 interface Person {
   key: string;
@@ -37,7 +38,7 @@ export class UsersComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -50,7 +51,11 @@ export class UsersComponent implements OnInit {
   }
 
   search(): void {
-    alert(JSON.stringify(this.validateForm.value));
+    // alert(JSON.stringify(this.validateForm.value));
+    this.userService.getUsers('')
+      .subscribe((data: any) => {
+        console.log(data);
+      });
   }
 
   addUser(): void {
