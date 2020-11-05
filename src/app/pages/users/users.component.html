@@ -23,22 +23,33 @@
   </div>
   <div nz-col [nzSpan]="24">
     <nz-card nzTitle="用户列表" [nzExtra]="listExtra">
-      <nz-table #basicTable [nzData]="listOfData">
+      <nz-table #basicTable [nzData]="listOfUser">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Address</th>
-          <th>Action</th>
+          <th>Id</th>
+          <th>用户名</th>
+          <th>昵称</th>
+          <th>邮箱</th>
+          <th>QQ</th>
+          <th>用户类型</th>
+          <th>状态</th>
+          <th>最后登录时间</th>
+          <th>登录次数</th>
+          <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{ data.name }}</td>
-          <td>{{ data.age }}</td>
-          <td>{{ data.address }}</td>
+          <td>{{ data.id }}</td>
+          <td>{{ data.username }}</td>
+          <td>{{ data.nickname }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.qq }}</td>
+          <td>{{ data.status }}</td>
+          <td>{{ data.last_login_time }}</td>
+          <td>{{ data.login_count }}</td>
           <td>
-            <a>Action 一 {{ data.name }}</a>
+            <a>Action 一 {{ data.id }}</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a>Delete</a>
           </td>

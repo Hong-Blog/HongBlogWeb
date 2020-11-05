@@ -9,34 +9,46 @@ interface Person {
   address: string;
 }
 
+export interface UserInfo {
+  id: number;
+  username: string;
+  password: string;
+  nickname: string;
+  mobile: string;
+  email: string;
+  qq: string;
+  birthday?: any;
+  gender?: any;
+  avatar: string;
+  user_type: string;
+  company?: any;
+  blog?: any;
+  location?: any;
+  source?: any;
+  uuid?: any;
+  privacy?: number;
+  notification?: number;
+  score: number;
+  experience: number;
+  reg_ip: string;
+  last_login_ip: string;
+  last_login_time?: Date;
+  login_count: number;
+  remark?: any;
+  status: number;
+  create_time: Date;
+  update_time: Date;
+}
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.less']
 })
 export class UsersComponent implements OnInit {
-  listOfData: Person[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
-
   validateForm: FormGroup;
+
+  listOfUser: UserInfo[];
 
   constructor(private fb: FormBuilder, private userService: UserService) {
   }
@@ -44,6 +56,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({});
     this.validateForm.addControl('keyword', new FormControl());
+    this.search();
   }
 
   resetForm(): void {
@@ -51,10 +64,10 @@ export class UsersComponent implements OnInit {
   }
 
   search(): void {
-    // alert(JSON.stringify(this.validateForm.value));
-    this.userService.getUsers('')
-      .subscribe((data: any) => {
-        console.log(data);
+    const keyword = this.validateForm.value.keyword || '';
+    this.userService.getUsers(keyword)
+      .subscribe((res: any) => {
+        this.listOfUser = res.data;
       });
   }
 
