@@ -11,6 +11,9 @@ import {NzFormModule} from 'ng-zorro-antd/form';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {IconsProviderModule} from '../../icons-provider.module';
+import {AddOrEditUserComponent} from './components/add-or-edit-user/add-or-edit-user.component';
+import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NzMessageModule} from 'ng-zorro-antd/message';
 
 @NgModule({
   imports: [
@@ -25,8 +28,10 @@ import {IconsProviderModule} from '../../icons-provider.module';
     ReactiveFormsModule,
     NzInputModule,
     IconsProviderModule,
+    NzModalModule,
+    NzMessageModule,
   ],
-  declarations: [UsersComponent],
+  declarations: [UsersComponent, AddOrEditUserComponent],
   exports: [UsersComponent]
 })
 export class UsersModule {

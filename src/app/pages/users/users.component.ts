@@ -1,13 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-
-interface Person {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {AddOrEditUserComponent} from './components/add-or-edit-user/add-or-edit-user.component';
 
 export interface UserInfo {
   id: number;
@@ -50,7 +45,10 @@ export class UsersComponent implements OnInit {
 
   listOfUser: UserInfo[];
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private modelService: NzModalService) {
   }
 
   ngOnInit(): void {
@@ -72,6 +70,9 @@ export class UsersComponent implements OnInit {
   }
 
   addUser(): void {
-    alert('添加用户');
+    this.modelService.create({
+      nzTitle: '添加用户',
+      nzContent: AddOrEditUserComponent
+    });
   }
 }

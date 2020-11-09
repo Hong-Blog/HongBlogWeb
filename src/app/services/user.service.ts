@@ -18,4 +18,10 @@ export class UserService {
       .set('pageSize', pageSize.toString());
     return this.http.get(url, {params: param});
   }
+
+  addUser(value: { userName: string, password: string, nickName: string, mobile: string, email: string, qq: string })
+    : Observable<any> {
+    const url = '/api/users';
+    return this.http.post(url, value);
+  }
 }

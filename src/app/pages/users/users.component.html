@@ -45,13 +45,14 @@
           <td>{{ data.nickname }}</td>
           <td>{{ data.email }}</td>
           <td>{{ data.qq }}</td>
+          <td>{{ data.user_type }}</td>
           <td>{{ data.status }}</td>
           <td>{{ data.last_login_time }}</td>
           <td>{{ data.login_count }}</td>
           <td>
-            <a>Action 一 {{ data.id }}</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>Delete</a>
+            <button nz-button nzType="primary"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary" nzDanger><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary"><i nz-icon nzType="usergroup-add" nzTheme="outline"></i></button>
           </td>
         </tr>
         </tbody>
