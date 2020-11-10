@@ -75,4 +75,15 @@ export class UsersComponent implements OnInit {
       nzContent: AddOrEditUserComponent
     });
   }
+
+  deleteUser(user: UserInfo): void {
+    this.modelService.confirm({
+      nzTitle: `确定要删除${user.username}吗？`,
+      nzIconType: 'exclamation-circle',
+      nzOnOk: () => {
+        this.userService.deleteUser(user.id)
+          .subscribe(res => this.search());
+      }
+    });
+  }
 }
